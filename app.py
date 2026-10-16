@@ -2,7 +2,7 @@
 Viral Clip Agent  -  runs fully locally on a Mac (Apple Silicon / M1).
 
 Type a topic  ->  finds the most-viewed video of the last 12 months about ONLY that topic
--> finds the most "replayed" moment -> cuts a 60-90s vertical clip -> burns in
+-> finds the most "replayed" moment -> cuts a 60-120s vertical clip -> burns in
 viral-style captions (big uppercase, 3 words at a time, active word highlighted)
 -> gives you an MP4 to download.
 
@@ -745,7 +745,7 @@ with gr.Blocks(title="Viral Clip Agent") as demo:
         link = gr.Textbox(label="YouTube link (optional if you type a topic)",
                           placeholder="https://www.youtube.com/watch?v=...", scale=3)
     with gr.Row():
-        length = gr.Slider(60, 90, value=75, step=5, label="Clip length (seconds)", scale=2)
+        length = gr.Slider(60, 120, value=75, step=5, label="Clip length (seconds)", scale=2)
         min_views = gr.Number(label="Minimum views (topic search only)", value=100000,
                               precision=0, scale=1)
     own_channel = gr.Textbox(label="Subject's own channel name (optional, topic search only)",
