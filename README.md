@@ -28,12 +28,11 @@ Paste a link or type a topic. Wanna Clip finds the best moments, cuts them, adds
 ## 🎥 Demo
 
 <div align="center">
-  <video src="assets/demo.mp4" width="860" controls muted playsinline>
-    Your browser can't play this video.
-    <a href="assets/demo.mp4">Watch the demo</a>.
-  </video>
-  <br>
-  <sub>▶ 25-second demo: from a YouTube link to a captioned short. <a href="assets/demo.mp4">Open the video directly</a> if it doesn't play above.</sub>
+
+
+https://github.com/user-attachments/assets/88f49f47-c573-4dca-aa3f-60d93a2cbb9c
+
+
 </div>
 
 <img src="assets/divider.svg" width="100%" alt="">
