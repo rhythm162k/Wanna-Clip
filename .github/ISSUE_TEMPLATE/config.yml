@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Ask a question
+    url: https://github.com/rhythm162k/Wanna-Clip/discussions
+    about: For questions and ideas, use Discussions (enable it in Settings if you don't see it).
