@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="assets/banner.svg" alt="Viral Clip Agent: find the moment, add the captions, ship the clip" width="100%">
+<img src="assets/banner.svg" alt="Wanna Clip: find the moment, add the captions, ship the clip" width="100%">
 
 <br>
 
@@ -13,9 +13,13 @@
 <br><br>
 
 **Turn any YouTube video into a captioned, share-ready short.**<br>
-Paste a link or type a topic. Viral Clip Agent finds the best moments, cuts them, adds word-by-word captions, and hands you an MP4.
+Paste a link or type a topic. Wanna Clip finds the best moments, cuts them, adds word-by-word captions, and hands you an MP4.
 
-[Features](#-features) · [How it works](#-how-it-works) · [Quick start](#-quick-start) · [Usage](#-usage) · [Configuration](#-configuration) · [Troubleshooting](#-troubleshooting)
+<sub>100% local &nbsp;·&nbsp; CPU-only &nbsp;·&nbsp; No API keys &nbsp;·&nbsp; No FFmpeg install</sub>
+
+<br>
+
+[Features](#-features) · [How it works](#-how-it-works) · [Quick start](#-quick-start) · [Usage](#-usage) · [Configuration](#-configuration) · [Architecture](#-architecture) · [Troubleshooting](#-troubleshooting)
 
 </div>
 
@@ -27,7 +31,7 @@ Paste a link or type a topic. Viral Clip Agent finds the best moments, cuts them
   2. Delete the comment markers around the block below
 
 <div align="center">
-  <img src="assets/screenshot.png" alt="Viral Clip Agent interface" width="860">
+  <img src="assets/screenshot.png" alt="Wanna Clip interface" width="860">
 </div>
 -->
 
@@ -37,7 +41,7 @@ Paste a link or type a topic. Viral Clip Agent finds the best moments, cuts them
   <tr>
     <td width="33%" valign="top">
       <h4>🔎 Finds the video for you</h4>
-      Type a topic and it searches for a popular video from the last two years. It skips music and copyrighted uploads, and other people's reaction videos.
+      Type a topic and it searches for a popular video from the last two years. It skips music, copyrighted uploads, livestreams and other people's reaction videos.
     </td>
     <td width="33%" valign="top">
       <h4>🎯 Picks the best moments</h4>
@@ -84,11 +88,13 @@ Paste a link or type a topic. Viral Clip Agent finds the best moments, cuts them
 
 <img src="assets/how-it-works.svg" alt="Source, Analyze, Pick, Polish, Export" width="100%">
 
-1. **Source:** you give it a YouTube link, or a topic to search for.
-2. **Analyze:** it listens to the whole video with a fast Whisper model, looks for audio peaks, and reads YouTube's *Most replayed* data when the video has it.
-3. **Pick:** it chooses the strongest moments, or uses the timestamps you typed.
-4. **Polish:** it renders the clip with word-by-word captions, optional glitch transitions and your own sound.
-5. **Export:** you get an MP4 in the interface, and a copy is saved to your `Downloads` folder.
+| Stage | What happens |
+| --- | --- |
+| **1. Source** | You give it a YouTube link, or a topic to search for. Music, copyrighted uploads and livestreams are filtered out. |
+| **2. Analyze** | It listens to the whole video with a fast Whisper model, looks for audio peaks, and reads YouTube's *Most replayed* data when the video has it. |
+| **3. Pick** | It chooses the strongest moments, or uses the timestamps you typed. |
+| **4. Polish** | It renders the clip with word-by-word captions, optional glitch transitions and your own sound. |
+| **5. Export** | You get an MP4 in the interface, and a copy is saved to your `Downloads` folder. |
 
 <img src="assets/divider.svg" width="100%" alt="">
 
@@ -98,8 +104,8 @@ Paste a link or type a topic. Viral Clip Agent finds the best moments, cuts them
 
 ```bash
 # 1. Get the code
-git clone https://github.com/YOUR-USERNAME/viral-clip-agent.git
-cd viral-clip-agent
+git clone https://github.com/rhythm162k/Wanna-Clip.git
+cd Wanna-Clip
 
 # 2. Create an isolated environment
 python3 -m venv .venv
@@ -120,6 +126,22 @@ Your browser opens at **http://127.0.0.1:7860**. FFmpeg is bundled through `imag
 > [!TIP]
 > YouTube changes often. If downloads start failing, update the downloader: `pip install -U yt-dlp`.
 
+<details>
+<summary><b>What gets installed</b></summary>
+
+<br>
+
+| Package | Purpose |
+| --- | --- |
+| `gradio>=4.0` | Web interface and local server |
+| `yt-dlp` | Video search, metadata and downloading |
+| `faster-whisper` | Fast CPU speech-to-text with word-level timestamps |
+| `imageio-ffmpeg` | Bundled FFmpeg binary for audio and video processing |
+| `numpy` | Audio peak analysis |
+| `Pillow>=10.1` | Drawing the pop captions |
+
+</details>
+
 <img src="assets/divider.svg" width="100%" alt="">
 
 ## 🎬 Usage
@@ -129,6 +151,13 @@ Your browser opens at **http://127.0.0.1:7860**. FFmpeg is bundled through `imag
 3. **Pick the moments.** Make one clip, or join multiple moments. Optionally enter exact timestamps.
 4. **Add the polish.** Switch glitch transitions and pop captions on or off, and optionally add a transition sound.
 5. **Make clip.** Watch progress in the status box. The result appears below and is saved to `~/Downloads`.
+
+### Formats
+
+| Format | Resolution | Max length |
+| --- | --- | --- |
+| **Short** (vertical, 9:16) | 1080×1920 | 3 minutes |
+| **Regular video** (horizontal, 16:9) | 1920×1080 | 10 minutes |
 
 ### Clip types
 
@@ -173,11 +202,69 @@ Everything lives in `app.py`. These are the settings people most often change:
 | `get_whisper()` model | `"small"` | Caption accuracy. Try `"base"` for speed or `"medium"` for accuracy. |
 | `ANALYSIS_MODEL` | `"tiny"` | The fast model used to find moments. `"base"` is slower but more accurate. |
 | `MAX_AGE_DAYS` | `730` | How far back topic search looks for videos. |
+| `RESET_DAYS` | `183` | How often the "already used" history is wiped (about 6 months). |
 | `FORMATS` | Short / Regular | Output size, caption size and position, and maximum length. |
 | `FONT_PATHS` | macOS, Windows, Linux | Fonts tried for captions, in order. |
 | `OUT_DIR` | `~/ViralClips` | Where history is stored. |
 
-Note that videos are downloaded at up to 720p to keep things fast, then rendered to the output size.
+Videos are downloaded at up to 720p to keep things fast, then rendered to the output size.
+
+<img src="assets/divider.svg" width="100%" alt="">
+
+## 🏗️ Architecture
+
+Wanna Clip is a single-file app. `app.py` handles everything from search to rendering, and the interface is built with Gradio Blocks.
+
+```mermaid
+flowchart LR
+    A[YouTube link<br/>or topic] --> B[find_video /<br/>use_link]
+    B --> C[is_music_or_copyrighted<br/>filter]
+    C --> D[analyze_video<br/>audio peaks + heatmap]
+    D --> E[build_highlight_plan<br/>fit_windows / pad_windows]
+    E --> F[get_whisper<br/>word timestamps]
+    F --> G[render_final<br/>captions + glitch cuts]
+    G --> H[(MP4 in UI<br/>and ~/Downloads)]
+    G --> I[record_use<br/>history JSON]
+```
+
+<details>
+<summary><b>Code map for contributors</b></summary>
+
+<br>
+
+| Area | Key symbols in `app.py` | Notes |
+| --- | --- | --- |
+| **Discovery** | `find_video`, `use_link`, `is_music_or_copyrighted`, `MUSIC_WORDS`, `COPYRIGHT_WORDS` | Searches recent popular videos, filters music, copyrighted uploads and livestreams. Only the needed time spans are downloaded. |
+| **Analysis** | `analyze_video`, `CHUNK_SECONDS` | Splits audio into chunks and scores RMS energy, whistles and crowd roars. |
+| **Selection** | `build_highlight_plan`, `fit_windows`, `pad_windows` | Picks non-overlapping moments, fits them to the length limit and pads the cut points. Typed timestamps bypass this step. |
+| **Transcription** | `get_whisper`, `ANALYSIS_MODEL` | Lazy, cached `faster-whisper` models on CPU with `int8` quantization. |
+| **Rendering** | `render_final`, `caption_strip`, `glitch_frame`, `FORMATS` | Pillow draws the pop captions, glitch cuts join moments, FFmpeg encodes the result. |
+| **History** | `load_history`, `record_use`, `recent_videos` | JSON state in `~/ViralClips/used_videos_v4.json`, wiped every `RESET_DAYS` days. |
+| **Interface** | `gr.Blocks`, `CP_CSS`, `CP_JS` | Custom styling and event wiring on top of Gradio. |
+
+</details>
+
+<details>
+<summary><b>History file format</b></summary>
+
+<br>
+
+Each video the app has used is stored by its YouTube ID, along with the start times (in seconds) of the moments already clipped:
+
+```json
+{
+  "_last_reset": "2026-01-01",
+  "VIDEO_ID": {
+    "title": "Video title",
+    "url": "https://www.youtube.com/watch?v=VIDEO_ID",
+    "channel": "Channel name",
+    "moments": [42, 120],
+    "last_used": "2026-01-15T14:32:00"
+  }
+}
+```
+
+</details>
 
 <img src="assets/divider.svg" width="100%" alt="">
 
@@ -208,7 +295,13 @@ The app looks for bold system fonts in `FONT_PATHS`. If none exist on your syste
 <details>
 <summary><b>I want a video's moments to be picked fresh again</b></summary>
 
-The app remembers moments it has used so repeats give new ones. To reset everything, delete `~/ViralClips/used_videos_v4.json`.
+The app remembers moments it has used so repeats give new ones. To reset everything, delete `~/ViralClips/used_videos_v4.json`. It also resets itself automatically about every six months.
+</details>
+
+<details>
+<summary><b>My typed timestamps were rejected</b></summary>
+
+The total length of all ranges must fit the format limit (3 minutes for Short, 10 for Regular). Shorten the ranges or switch to Regular video.
 </details>
 
 <details>
@@ -222,13 +315,22 @@ The interface styling uses features of recent Gradio versions. Update with `pip 
 ## 📁 Project structure
 
 ```
-viral-clip-agent/
+Wanna-Clip/
 ├── app.py              # the whole app: search, analysis, rendering, interface
 ├── requirements.txt    # Python dependencies
-├── assets/             # README graphics
+├── favicon.png         # browser tab icon
+├── assets/             # README graphics (banner, divider, footer, how-it-works)
 ├── LICENSE
 └── README.md
 ```
+
+## 🤝 Contributing
+
+Issues and pull requests are welcome. For bigger changes, open an issue first so we can talk it through.
+
+1. Fork the repo and create a branch: `git checkout -b my-feature`
+2. Make your change and test it by running `python app.py`
+3. Open a pull request describing what changed and why
 
 ## 🧱 Built with
 
@@ -245,7 +347,7 @@ Released under the [MIT License](LICENSE).
 <br>
 
 <div align="center">
-  <img src="assets/footer.svg" alt="Viral Clip Agent" width="100%">
+  <img src="assets/footer.svg" alt="Wanna Clip" width="100%">
   <br><br>
   Built by <b>Md. Sami-El Bashar Rhythm</b><br>
   <sub>If this saved you time, a ⭐ on the repo is much appreciated.</sub>
