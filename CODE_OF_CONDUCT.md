@@ -32,7 +32,7 @@ This code of conduct applies in all project spaces, including issues, pull reque
 
 ## Reporting
 
-To report unacceptable behavior, contact the maintainer at **YOUR-EMAIL@example.com**. All reports are handled privately and taken seriously.
+To report unacceptable behavior, contact the maintainer at **mdsamielbasharrhythm@gmail.com**. All reports are handled privately and taken seriously.
 
 ## Enforcement guidelines
 
