@@ -19,21 +19,24 @@ Paste a link or type a topic. Wanna Clip finds the best moments, cuts them, adds
 
 <br>
 
-[Features](#-features) · [How it works](#-how-it-works) · [Quick start](#-quick-start) · [Usage](#-usage) · [Configuration](#-configuration) · [Architecture](#-architecture) · [Troubleshooting](#-troubleshooting)
+[Demo](#-demo) · [Features](#-features) · [How it works](#-how-it-works) · [Quick start](#-quick-start) · [Usage](#-usage) · [Configuration](#-configuration) · [Architecture](#-architecture) · [Troubleshooting](#-troubleshooting)
 
 </div>
 
 <img src="assets/divider.svg" width="100%" alt="">
 
-<!--
-  Add a screenshot of the app here:
-  1. Save it as assets/screenshot.png
-  2. Delete the comment markers around the block below
+## 🎥 Demo
 
 <div align="center">
-  <img src="assets/screenshot.png" alt="Wanna Clip interface" width="860">
+  <video src="assets/demo.mp4" width="860" controls muted playsinline>
+    Your browser can't play this video.
+    <a href="assets/demo.mp4">Watch the demo</a>.
+  </video>
+  <br>
+  <sub>▶ 25-second demo: from a YouTube link to a captioned short. <a href="assets/demo.mp4">Open the video directly</a> if it doesn't play above.</sub>
 </div>
--->
+
+<img src="assets/divider.svg" width="100%" alt="">
 
 ## ✨ Features
 
