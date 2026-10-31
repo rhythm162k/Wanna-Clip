@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="270" viewBox="0 0 1280 270" role="img" aria-label="How it works: Source, Analyze, Pick, Polish, Export">
+  <defs>
+    <linearGradient id="card" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#15132a"/><stop offset="1" stop-color="#0c0b16"/></linearGradient>
+    <linearGradient id="num" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#b79cff"/><stop offset="1" stop-color="#8f6bff" stop-opacity=".25"/></linearGradient>
+  </defs>
+  <g font-family="'Segoe UI','Helvetica Neue',Helvetica,Arial,sans-serif">
+    <rect width="1280" height="270" rx="24" fill="#07070b"/>
+    <rect x=".5" y=".5" width="1279" height="269" rx="23.5" fill="none" stroke="#ffffff" stroke-opacity=".08"/>
+    <g id="cards">
+      <g transform="translate(72 40)"><rect width="208" height="190" rx="18" fill="url(#card)" stroke="#8f6bff" stroke-opacity=".35"/>
+        <text x="20" y="62" font-size="46" font-weight="800" fill="url(#num)">01</text>
+        <text x="20" y="102" font-size="20" font-weight="700" fill="#f3f3f7">Source</text>
+        <text x="20" y="128" font-size="13" fill="#9494a8">Paste a link or type a</text><text x="20" y="147" font-size="13" fill="#9494a8">topic and let it search.</text></g>
+      <g transform="translate(304 40)"><rect width="208" height="190" rx="18" fill="url(#card)" stroke="#8f6bff" stroke-opacity=".35"/>
+        <text x="20" y="62" font-size="46" font-weight="800" fill="url(#num)">02</text>
+        <text x="20" y="102" font-size="20" font-weight="700" fill="#f3f3f7">Analyze</text>
+        <text x="20" y="128" font-size="13" fill="#9494a8">Transcript, crowd roars</text><text x="20" y="147" font-size="13" fill="#9494a8">and Most replayed data.</text></g>
+      <g transform="translate(536 40)"><rect width="208" height="190" rx="18" fill="url(#card)" stroke="#8f6bff" stroke-opacity=".35"/>
+        <text x="20" y="62" font-size="46" font-weight="800" fill="url(#num)">03</text>
+        <text x="20" y="102" font-size="20" font-weight="700" fill="#f3f3f7">Pick</text>
+        <text x="20" y="128" font-size="13" fill="#9494a8">The app chooses, or you</text><text x="20" y="147" font-size="13" fill="#9494a8">give exact timestamps.</text></g>
+      <g transform="translate(768 40)"><rect width="208" height="190" rx="18" fill="url(#card)" stroke="#8f6bff" stroke-opacity=".35"/>
+        <text x="20" y="62" font-size="46" font-weight="800" fill="url(#num)">04</text>
+        <text x="20" y="102" font-size="20" font-weight="700" fill="#f3f3f7">Polish</text>
+        <text x="20" y="128" font-size="13" fill="#9494a8">Pop captions, glitch cuts</text><text x="20" y="147" font-size="13" fill="#9494a8">and your own sound.</text></g>
+      <g transform="translate(1000 40)"><rect width="208" height="190" rx="18" fill="url(#card)" stroke="#ffb224" stroke-opacity=".6"/>
+        <text x="20" y="62" font-size="46" font-weight="800" fill="#ffb224" fill-opacity=".85">05</text>
+        <text x="20" y="102" font-size="20" font-weight="700" fill="#f3f3f7">Export</text>
+        <text x="20" y="128" font-size="13" fill="#9494a8">MP4 in 9:16 or 16:9,</text><text x="20" y="147" font-size="13" fill="#9494a8">saved to Downloads.</text></g>
+    </g>
+    <g fill="none" stroke="#8f6bff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M286 135 L298 135 M293 129 L299 135 L293 141"/>
+      <path d="M518 135 L530 135 M525 129 L531 135 L525 141"/>
+      <path d="M750 135 L762 135 M757 129 L763 135 L757 141"/>
+      <path d="M982 135 L994 135 M989 129 L995 135 L989 141"/>
+    </g>
+    <circle r="4" fill="#ffb224"><animateMotion dur="5s" repeatCount="indefinite" path="M90 28 L1190 28"/></circle>
+  </g>
+</svg>
